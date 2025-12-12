@@ -18,10 +18,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html
-            lang="en"
-            className={`${globalFont.className} antialiased text-emerald-800`}
-        >
+        <html lang="en" className={`${globalFont.className} bg-main`}>
             <body>{children}</body>
         </html>
     );

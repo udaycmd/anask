@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  poster
+  mod
+  tello_master
+}
+
+enum WatcherAction {
+  delete_thread
+  ban_ip
+  announcement
+}
+
+model Watcher {
+  id         String     @id @default(cuid())
+  email      String     @unique
+  name       String
+  pass       String
+  role       Role       @default(mod)
+  created_at DateTime   @default(now())
+  logs       WatchLog[] // activity log
+}
+
+model WatchLog {
+  watcher_id String
+  watcher    Watcher @relation(fields: [watcher_id], references: [id])
+
+  id        String        @id @default(cuid())
+  action    WatcherAction
+  target_id String?
+  desc      String?
+
+  created_at DateTime @default(now())
+}

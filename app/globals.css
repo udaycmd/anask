@@ -1,6 +1,0 @@
-@import "tailwindcss";
-
-@theme {
-    --color-main: oklch(0.973 0.025 172);
-    --color-btn-txt: oklch(0.909 0.101 152);
-}
